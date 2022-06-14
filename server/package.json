@@ -1,0 +1,13 @@
+{
+  "name": "prod-mgr-i-server",
+  "version": "0.1.0",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.8",
+    "nodemon": "^2.0.16",
+    "web-vitals": "^2.1.4"
+  }
+}
