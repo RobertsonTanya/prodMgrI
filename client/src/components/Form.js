@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import '../styles/form.css';
 
-const Form = () => {
+const Form = (props) => {
+    const { products, setProducts } = props;
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
-    const [products, setProducts] = useState([]);
 
     const createNewProduct = (e) => {
         e.preventDefault();
@@ -15,25 +16,19 @@ const Form = () => {
             price,
             description
         })
-            .then(response => {
-                console.log(response.data)
+            .then(res => {
+                console.log(res.data);
+                setProducts([...products, res.data])
                 setTitle('');
                 setPrice('');
                 setDescription('');
             })
             .catch(err => console.log(err));
     }
-    const getProducts = () => {
-        axios.get('http://localhost:5000/api/products')
-            .then((response) => {
-                setProducts(response.data)
-            })
-            .catch((err) => console.log(err))
-    }
 
     return (
         <div>
-            <h1>Product Form</h1>
+            <h2>Product Manager</h2>
             <form onSubmit={createNewProduct}>
                 <div>
                     <label htmlFor="title">Title</label>
@@ -49,17 +44,6 @@ const Form = () => {
                 </div>
                 <button type="submit">Create</button>
             </form>
-
-            <button onClick={getProducts}>Get All Products</button>
-            {products ? products.map((product, index) => {
-                return (
-                    <div>
-                        <h4>{product.title}</h4>
-                        <p>{product.price}</p>
-                        <p>{product.description}</p>
-                    </div>
-                )
-            }) : null}
         </div>
     )
 }

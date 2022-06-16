@@ -12,3 +12,8 @@ module.exports.getAllProducts = (req, res) => {
         .then((allProducts) => {res.json(allProducts)})
         .catch((err) => (res.json(err)))
 }
+module.exports.findOneProduct = (req, res) => {
+    Product.findOne({_id: req.params.id})
+        .then((oneProduct) => {res.json(oneProduct)})
+        .catch((err) => (res.json(err)))
+}
