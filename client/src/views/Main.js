@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from '../components/Form';
 import AllProducts from '../components/AllProducts';
 
 
-const Main = () => {
-    const [products, setProducts] = useState([]);
+const Main = (props) => {
+    const { products, setProducts, deleteProduct } = props;
 
     return (
         <div>
             <Form products={products} setProducts={setProducts} />
             <hr />
-            <AllProducts products={products} setProducts={setProducts}  />
+            <AllProducts products={products} setProducts={setProducts} deleteProduct={deleteProduct}  />
         </div>
     )
 }
